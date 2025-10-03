@@ -66,3 +66,17 @@ restaurant_menu
 │   ├── edit_product.html
 │   └── menu.html
 ```
+
+git remote add origin https://github.com/JBATRES007/restaurant-menu-system.git
+git branch -M main
+git push -u origin main
+
+📋 Comandos útiles para el futuro
+bash
+# Para actualizar el repositorio después de hacer cambios
+./deploy.sh "Descripción de los cambios realizados"
+
+# O manualmente:
+git add .
+git commit -m "Descripción de los cambios"
+git push origin main
