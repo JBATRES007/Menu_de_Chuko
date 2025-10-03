@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Sistema Menú{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1 class="mb-4">Mantenimiento de Productos de Chuko</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4 mb-4">
+        <div class="card text-white bg-primary">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h4 class="card-title">{{ products_count }}</h4>
+                        <p class="card-text">Productos Activos</p>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="bi bi-egg-fried fs-1"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+<!--     <div class="col-md-4 mb-4">
+        <div class="card text-white bg-success">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h4 class="card-title">Gestión</h4>
+                        <p class="card-text">Catálogo de Productos</p>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="bi bi-list-check fs-1"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+     -->
+    <div class="col-md-4 mb-4">
+        <div class="card text-white bg-info">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h4 class="card-title">QR</h4>
+                        <p class="card-text">Menú Digital</p>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="bi bi-qr-code fs-1"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Opciones</h5>
+            </div>
+            <div class="card-body">
+                <div class="d-grid gap-2">
+                    <a href="{{ url_for('products') }}" class="btn btn-outline-primary">
+                        <i class="bi bi-list-ul"></i> Ver Todos los Productos
+                    </a>
+                    <a href="{{ url_for('add_product') }}" class="btn btn-outline-success">
+                        <i class="bi bi-plus-circle"></i> Agregar Nuevo Producto
+                    </a>
+                    <a href="{{ url_for('generate_qr') }}" class="btn btn-outline-info">
+                        <i class="bi bi-qr-code"></i> Generar Código QR del Menú
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Código QR del Menú</h5>
+            </div>
+            <div class="card-body text-center">
+                {% if qr_code %}
+                    <img src="data:image/png;base64,{{ qr_code }}" alt="Código QR del Menú" class="img-fluid mb-3" style="max-width: 200px;">
+                    <p class="small text-muted">Escanea este código para ver el menú</p>
+                    <p class="small">
+                        <strong>URL:</strong> 
+                        <a href="{{ menu_url }}" target="_blank">{{ menu_url }}</a>
+                    </p>
+                {% else %}
+                    <p class="text-muted">Haz clic en "Generar Código QR" para crear el código QR de tu menú.</p>
+                    <a href="{{ url_for('generate_qr') }}" class="btn btn-primary">
+                        <i class="bi bi-qr-code"></i> Generar Código QR
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

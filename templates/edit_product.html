@@ -1,0 +1,63 @@
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title mb-0">
+                    <i class="bi bi-pencil"></i> Editar Producto
+                </h4>
+            </div>
+            <div class="card-body">
+                <form method="POST" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nombre del Producto *</label>
+                        <input type="text" class="form-control" id="name" name="name" 
+                               value="{{ product.name }}" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Descripción</label>
+                        <textarea class="form-control" id="description" name="description" 
+                                  rows="3">{{ product.description or '' }}</textarea>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="price" class="form-label">Precio *</label>
+                        <div class="input-group">
+                            <span class="input-group-text">C$</span>
+                            <input type="number" class="form-control" id="price" name="price" 
+                                   step="0.01" min="0" value="{{ product.price }}" required>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="image" class="form-label">Imagen del Producto</label>
+                        
+                        {% if product.image_filename %}
+                        <div class="mb-2">
+                            <img src="{{ url_for('static', filename='uploads/' + product.image_filename) }}" 
+                                 class="img-thumbnail" style="max-height: 150px;" 
+                                 alt="{{ product.name }}">
+                            <div class="form-text">Imagen actual</div>
+                        </div>
+                        {% endif %}
+                        
+                        <input type="file" class="form-control" id="image" name="image" 
+                               accept="image/*">
+                        <div class="form-text">
+                            Selecciona una nueva imagen para reemplazar la actual. Formatos permitidos: JPG, PNG, GIF.
+                        </div>
+                    </div>
+                    
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a href="{{ url_for('products') }}" class="btn btn-secondary me-md-2">
+                            <i class="bi bi-arrow-left"></i> Cancelar
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-check-circle"></i> Actualizar Producto
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
