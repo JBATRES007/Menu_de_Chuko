@@ -21,7 +21,7 @@ Una aplicación web completa para gestionar el menú de restaurante con autentic
 1. Crear entorno virtual:
    python -m venv venv
    source venv/bin/activate  # Linux/Mac
-   venv\Scripts\activate     # Windows
+   source venv\Scripts\activate     # Windows
 
 2. Instalar dependencias:
    pip install -r requirements.txt
