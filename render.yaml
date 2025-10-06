@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: restaurant-menu-system
+    env: python
+    runtime: python-3.11.9
+    buildCommand: |
+      pip install --upgrade pip wheel setuptools
+      pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: SECRET_KEY
+        sync: false
