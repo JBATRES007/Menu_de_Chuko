@@ -14,3 +14,24 @@ services:
         value: 3.11.9
       - key: SECRET_KEY
         sync: false
+
+  envVars:
+  - key: FLASK_ENV
+    value: production
+  - key: FLASK_DEBUG
+    value: 0
+  - key: SECRET_KEY
+    generateValue: true
+  - key: SQLALCHEMY_DATABASE_URI
+    value: sqlite:///database.db
+  - key: SQLALCHEMY_TRACK_MODIFICATIONS
+    value: False
+  - key: PORT
+    value: 10000
+  - key: PYTHON_VERSION
+    value: 3.11.9
+  - key: TZ
+    value: America/Managua
+  - key: LOG_LEVEL
+    value: INFO
+
