@@ -80,3 +80,6 @@ bash
 git add .
 git commit -m "Descripción de los cambios"
 git push origin main
+
+# En render: 
+Build Command: pip install --upgrade pip wheel setuptools && pip install --only-binary=:all: Pillow==10.3.0 && pip install -r requirements.txt
