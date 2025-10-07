@@ -2,36 +2,34 @@ services:
   - type: web
     name: restaurant-menu-system
     env: python
-    runtime: python-3.11.9
+    region: oregon
+    plan: free
+    branch: main
+    autoDeploy: true
+
     buildCommand: |
       pip install --upgrade pip wheel setuptools
+      pip install --only-binary=:all: Pillow==10.3.0
       pip install -r requirements.txt
+
     startCommand: gunicorn app:app
+
     envVars:
-      - key: FLASK_ENV
-        value: production
       - key: PYTHON_VERSION
         value: 3.11.9
+      - key: PORT
+        value: 10000
+      - key: FLASK_ENV
+        value: production
+      - key: FLASK_DEBUG
+        value: 0
       - key: SECRET_KEY
-        sync: false
-
-  envVars:
-  - key: FLASK_ENV
-    value: production
-  - key: FLASK_DEBUG
-    value: 0
-  - key: SECRET_KEY
-    generateValue: true
-  - key: SQLALCHEMY_DATABASE_URI
-    value: sqlite:///database.db
-  - key: SQLALCHEMY_TRACK_MODIFICATIONS
-    value: False
-  - key: PORT
-    value: 10000
-  - key: PYTHON_VERSION
-    value: 3.11.9
-  - key: TZ
-    value: America/Managua
-  - key: LOG_LEVEL
-    value: INFO
-
+        generateValue: true
+      - key: SQLALCHEMY_DATABASE_URI
+        value: sqlite:///database.db
+      - key: SQLALCHEMY_TRACK_MODIFICATIONS
+        value: False
+      - key: TZ
+        value: America/Managua
+      - key: LOG_LEVEL
+        value: INFO
