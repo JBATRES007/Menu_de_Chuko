@@ -245,7 +245,7 @@ def init_db():
             admin_user.set_password('contrasenaperrona')
             db.session.add(admin_user)
             db.session.commit()
-            print("Usuario admin creado: admin / admin123")
+            print("Usuario admin creado: admin / contrasenaperrona")
 
 if __name__ == '__main__':
     # Crear directorios necesarios
